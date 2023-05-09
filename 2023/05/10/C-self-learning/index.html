@@ -27,7 +27,7 @@
 
 
 
-<title>How to start a new post | Sleep With Me</title>
+<title>C++ self learning | Sleep With Me</title>
 
 
 
@@ -165,7 +165,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        How to start a new post
+        C++ self learning
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -230,30 +230,63 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        How to start a new post
+        C++ self learning
       </h1>
       <p class="mb-6">
         
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-04 18:00:59</time>
+          <time>2023-05-10 01:00:04</time>
           <span class="text-gray-400">·</span>
-          <span>1 min</span>
+          <span>2 min</span>
           <span class="text-gray-400">·</span>
-          <span>125 words</span>
+          <span>698 words</span>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
   <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>进入 HEXO root dirction ，右键打开 GIT Bash Here<br>创建 new post ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;NAME&quot;</span><br></pre></td></tr></table></figure>
-<p>会在 source 文件夹中生成 NAME.md 以及一个名为 NAME.md 的文件夹，可以在该文件夹中放入需要使用到的图片。</p>
-<h1 id="渲染并部署"><a href="#渲染并部署" class="headerlink" title="渲染并部署"></a>渲染并部署</h1><p>运行以下代码来将 post 渲染并部署到 Github Pages 上：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g    # 生成页面</span><br><span class="line">hexo d    # 部署发布</span><br></pre></td></tr></table></figure>
-<p>若修改并部署后没有效果，使用 <code>hexo clean</code> 清理缓存后重新部署。</p>
+    <h1 id="new-和-delete-关键字、动态创建变量-x2F-数组、内存泄漏、-default"><a href="#new-和-delete-关键字、动态创建变量-x2F-数组、内存泄漏、-default" class="headerlink" title="new 和 delete 关键字、动态创建变量&#x2F;数组、内存泄漏、 default"></a><code>new</code> 和 <code>delete</code> 关键字、动态创建变量&#x2F;数组、内存泄漏、 <code>default</code></h1><h2 id="new-和-delete-关键字"><a href="#new-和-delete-关键字" class="headerlink" title="new 和 delete 关键字"></a><code>new</code> 和 <code>delete</code> 关键字</h2><h3 id="动态创建一个整型变量"><a href="#动态创建一个整型变量" class="headerlink" title="动态创建一个整型变量"></a>动态创建一个整型变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line">cin &gt;&gt; *p;</span><br><span class="line"><span class="keyword">delete</span> p;</span><br></pre></td></tr></table></figure>
+<h3 id="动态创建一个整型数组"><a href="#动态创建一个整型数组" class="headerlink" title="动态创建一个整型数组"></a>动态创建一个整型数组</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="type">int</span>[length] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// 若没有初始化列表，则不确定值；若初始化列表长度不够，则自动补齐`0`</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">  cout &lt;&lt; p[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">delete</span> [] p;</span><br></pre></td></tr></table></figure>
+<h3 id="动态创建一个-string-数组"><a href="#动态创建一个-string-数组" class="headerlink" title="动态创建一个 string 数组"></a>动态创建一个 <code>string</code> 数组</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">3</span>;</span><br><span class="line">string *p = <span class="keyword">new</span> string[n] &#123;</span><br><span class="line">  <span class="built_in">string</span>(<span class="number">5</span>, <span class="string">&#x27;a&#x27;</span>), <span class="built_in">string</span>(<span class="number">4</span>, <span class="string">&#x27;b&#x27;</span>), <span class="built_in">string</span>(<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 由于将决定分配多少长度，`string`创建时必须初始化</span></span><br><span class="line">p[<span class="number">1</span>][<span class="number">2</span>] = <span class="string">&#x27;f&#x27;</span>;</span><br><span class="line"><span class="comment">// 初始化后可以更改</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  cout &lt;&lt; p[i] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">delete</span> [] p;</span><br></pre></td></tr></table></figure>
+<h3 id="动态创建一个二维整型数组"><a href="#动态创建一个二维整型数组" class="headerlink" title="动态创建一个二维整型数组"></a>动态创建一个二维整型数组</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> row;</span><br><span class="line"><span class="type">int</span> col;</span><br><span class="line">cin &gt;&gt; row &gt;&gt; col;</span><br><span class="line"><span class="type">int</span> **a;</span><br><span class="line">a = <span class="keyword">new</span> <span class="type">int</span> *[row];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">  a[i] = <span class="keyword">new</span> <span class="type">int</span> [col];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">    cin &gt;&gt; a[row][col];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">  <span class="keyword">delete</span> [] a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">delete</span> [] a;</span><br></pre></td></tr></table></figure>
+<h3 id="new-总结"><a href="#new-总结" class="headerlink" title="new 总结"></a><code>new</code> 总结</h3><ol>
+<li><code>指针=new 类型名;</code> &#x2F;&#x2F;动态创建一个对象</li>
+<li><code>指针=new 类型名;</code>（初始化参数） ； &#x2F;&#x2F;动态创建一个对象，可不初始化</li>
+<li><code>指针=new 类型名[数组长度]&#123;初始化列表&#125;;</code>&#x2F;&#x2F;用于动态分配数组，可没有初始化列表（<code>string</code>类型就一定要有）</li>
+</ol>
+<ul>
+<li>类型可为基本类型，也可为类类型。<ul>
+<li>若为类类型，则初始化参数相当于将实际参数传递给该类的构造函数</li>
+</ul>
+</li>
+<li><code>new</code> 运算返回一个该类型指针,指向分配到的内存空间</li>
+<li>若内存分配失败，抛出异常结束程序，而不是返回 <code>NULL</code></li>
+</ul>
+<h3 id="delete-总结："><a href="#delete-总结：" class="headerlink" title="delete 总结："></a><code>delete</code> 总结：</h3><ol>
+<li><code>delete 变量名;</code> &#x2F;&#x2F;基本用法</li>
+<li><code>delete []变量名;</code> &#x2F;&#x2F;用于释放数组</li>
+</ol>
+<ul>
+<li><p>如果动态分配了一个数组，但是却用<code>delete p</code>的方式释放，没有用<code>[]</code>，则</p>
+<ul>
+<li>编译时没有问题，运行时也一般不会发生错误，</li>
+<li>但实际上会导致动态分配的数组没有被完全释放。</li>
+</ul>
+</li>
+<li><p><code>delete</code> 释放的是指针所指对象占据的内存。</p>
+<ul>
+<li><code>delete</code> 对象指针，会调用该对象的析构函数。（<code>[]</code> 将令其中所有元素都调用各自析构函数）</li>
+<li>用delete释放空间后，指针的值仍是原来指向的地址，但指针已无效（重复释放将出错，即非法指针访问）。</li>
+</ul>
+</li>
+<li><p><code>delete</code> 本身会自动检查对象是否为空。如果为空,就不做操作,因此 <code>delete</code> 空指针<strong>不需要</strong>特判。</p>
+</li>
+<li><p>为防止重复删除出错，最好删除后就把指针赋为空。</p>
+</li>
+</ul>
 
   </article>
   <!-- tag -->
@@ -261,7 +294,7 @@
     
       
         <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/HEXO/">HEXO</a>
+          <a href="/tags/C/">C++</a>
         </span>
       
     
@@ -270,16 +303,11 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/05/10/C-self-learning/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          C++ self learning
-        </a>
-      
     </div>
     <div>
       
-        <a href="/2023/04/29/Linked-List/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          Linked List
+        <a href="/2023/05/04/How-to-start-a-new-post/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          How to start a new post
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       
