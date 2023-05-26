@@ -27,7 +27,7 @@
 
 
 
-<title>How to start a new post | Sleep With Me</title>
+<title>C++ note (3) | Sleep With Me</title>
 
 
 
@@ -165,7 +165,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        How to start a new post
+        C++ note (3)
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -230,38 +230,70 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        How to start a new post
+        C++ note (3)
       </h1>
       <p class="mb-6">
         
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-04 18:00:59</time>
+          <time>2023-05-27 02:50:02</time>
           <span class="text-gray-400">·</span>
           <span>1 min</span>
           <span class="text-gray-400">·</span>
-          <span>125 words</span>
+          <span>378 words</span>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
   <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>进入 HEXO root dirction ，右键打开 GIT Bash Here<br>创建 new post ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;NAME&quot;</span><br></pre></td></tr></table></figure>
-<p>会在 source 文件夹中生成 NAME.md 以及一个名为 NAME.md 的文件夹，可以在该文件夹中放入需要使用到的图片。</p>
-<h1 id="渲染并部署"><a href="#渲染并部署" class="headerlink" title="渲染并部署"></a>渲染并部署</h1><p>运行以下代码来将 post 渲染并部署到 Github Pages 上：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g    # 生成页面</span><br><span class="line">hexo d    # 部署发布</span><br></pre></td></tr></table></figure>
-<p>若修改并部署后没有效果，使用 <code>hexo clean</code> 清理缓存后重新部署。</p>
-
+    <h1 id="数据抽象类型-Ⅱ"><a href="#数据抽象类型-Ⅱ" class="headerlink" title="数据抽象类型 Ⅱ"></a>数据抽象类型 Ⅱ</h1><h2 id="C-新增"><a href="#C-新增" class="headerlink" title="C++ 新增"></a><code>C++</code> 新增</h2><h3 id="新类型：bool"><a href="#新类型：bool" class="headerlink" title="新类型：bool"></a>新类型：<code>bool</code></h3><p><code>C</code> ：</p>
+<ul>
+<li>没有 bool 类型<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> true = 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> false = 0</span></span><br></pre></td></tr></table></figure></li>
+<li>C99 定义了 <code>_Bool</code> 类型，并通过 <code>stdbool.h</code> 实现与 <code>C++</code> 兼容</li>
+</ul>
+<p><code>C++</code>：</p>
+<ul>
+<li>定义了三个关键字：<code>bool</code>，<code>true</code>，<code>false</code></li>
+<li>当显式（例 (bool)7）或隐式（例 bool b &#x3D; 7；）转为 <code>bool</code> 类型时<ul>
+<li><code>0</code> 值转为 <code>false</code></li>
+<li>非 <code>0</code> 值转为 <code>true</code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="literal">true</span> <span class="comment">//输出 1</span></span><br><span class="line">cout &lt;&lt; <span class="literal">false</span> <span class="comment">//输出 0</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="形参：void"><a href="#形参：void" class="headerlink" title="形参：void"></a>形参：<code>void</code></h3><p><code>C</code>：</p>
+<ul>
+<li>func(); 没有声明形参表示函数的形参不确定</li>
+<li>没有参数，则必须显式声明 func(void);</li>
+</ul>
+<p><code>C++</code>：</p>
+<ul>
+<li>func(); <strong>等价于</strong> func(void);</li>
+<li>使用 <code>…</code> 表示可变参数<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">printx</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* fmt, ...)</span></span>;</span><br><span class="line"><span class="comment">// 能以一个或多个实参调用：</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printx</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"><span class="built_in">printx</span>(<span class="string">&quot;a = %d b = %d&quot;</span>, a, b);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>背景：</p>
+<ul>
+<li>在开发中，需要的函数功能类似，但参数数量或类型不同<br><code>C</code> 的解决：</li>
+<li>必须申明两个函数（不重名）<br><code>C++</code> 的解决：</li>
+<li>声明同名函数，但参数类型不同：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">double</span>&amp; a, <span class="type">double</span>&amp; b)</span></span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="auto用于函数重载"><a href="#auto用于函数重载" class="headerlink" title="auto用于函数重载"></a>auto用于函数重载</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> temp = a;</span><br><span class="line">  a = b;</span><br><span class="line">  b = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">double</span>&amp; a, <span class="type">double</span>&amp; b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> temp = a;</span><br><span class="line">  a = b;</span><br><span class="line">  b = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">  <span class="type">double</span> p =<span class="number">0.1</span>;</span><br><span class="line">  <span class="type">double</span> q = <span class="number">1.1</span>;</span><br><span class="line">  <span class="built_in">swap</span>(i, j);</span><br><span class="line">  <span class="built_in">swap</span>(p, q);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让编译推导决定使用哪个函数</p>
+<p>事实上，编译器会将函数名、参数数量、参数类型编译为唯一的内部函数名</p>
+<ul>
+<li>swap_int_int</li>
+<li>swap_double_double</li>
+</ul>
+<p>是不同的函数签名</p>
+<h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3>
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
     
       
         <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/HEXO/">HEXO</a>
+          <a href="/tags/C/">C++</a>
         </span>
       
     
@@ -270,16 +302,11 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/05/10/C-note/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          C++ note (1)
-        </a>
-      
     </div>
     <div>
       
-        <a href="/2023/04/29/Linked-List/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          Linked List
+        <a href="/2023/05/10/C-note-2/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          C++ note (2)
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       
