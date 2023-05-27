@@ -237,11 +237,11 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-27 20:54:43</time>
+          <time>2023-05-27 21:05:33</time>
           <span class="text-gray-400">·</span>
-          <span>3 min</span>
+          <span>4 min</span>
           <span class="text-gray-400">·</span>
-          <span>791 words</span>
+          <span>1.1k words</span>
         </section>
       </div>
     </div>
@@ -300,7 +300,7 @@
 </ul>
 <h3 id="字符串类型：string"><a href="#字符串类型：string" class="headerlink" title="字符串类型：string"></a>字符串类型：<code>string</code></h3><p><code>C</code>：</p>
 <ul>
-<li>C 字符串是 <code>char*</code> 类型，是以’\0’字符结束的字符数组。</li>
+<li>C 字符串是 <code>char*</code> 类型，是以 <code>&#39;\0&#39;</code> 字符结束的字符数组。</li>
 <li>在 <code>C++</code> 中处理 <code>C</code> 字符串，使用 <code>#include &lt;cstring&gt;</code></li>
 </ul>
 <p><code>C++</code>：</p>
@@ -319,7 +319,33 @@
 </li>
 <li><p>默认情况下，class的所有成员都是私有的。</p>
 </li>
-<li><p>实际操作中，我们一般会在私有区域定义数据，在公有区域定义相关的函数，以便在类的外部也可以调用这些函数</p>
+<li><p>实际操作中，一般会在私有区域定义数据，在公有区域定义相关的函数，以便<em>在类的外部也可以调用这些函数</em>，保持对象内部状态一致</p>
+</li>
+</ul>
+<h2 id="构造-x2F-析构"><a href="#构造-x2F-析构" class="headerlink" title="构造&#x2F;析构"></a>构造&#x2F;析构</h2><h3 id="无参构造函数"><a href="#无参构造函数" class="headerlink" title="无参构造函数"></a>无参构造函数</h3><ul>
+<li><p>类的构造函数是类的一种特殊的成员函数，每次创建类的新对象时执行它完成初始化等逻辑。</p>
+</li>
+<li><p>构造函数的<em>名称与类的名称是完全相同</em>的，并且不会返回任何类型，也不会返回 <code>void</code>。</p>
+</li>
+<li><p>如果用户没有自定义构造函数，则编译会<em>自动生成一个默认构造函数</em></p>
+</li>
+</ul>
+<h3 id="含参构造函数"><a href="#含参构造函数" class="headerlink" title="含参构造函数"></a>含参构造函数</h3><ul>
+<li><p>构造函数也可以带有参数。这样在创建对象时就可使用参数构造对象。</p>
+</li>
+<li><p>用户一旦定义了构造函数，编译器就不再自动添加默认构造函数。这时调用无参构造函数会报错</p>
+</li>
+<li><p>构造函数也能使用默认实参。这样可以减少构造函数重载的数量。</p>
+</li>
+</ul>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><ul>
+<li><p>类的析构函数是类的一种特殊的成员函数，它会在对象<em>被释放前执行</em>。</p>
+</li>
+<li><p>析构函数的名称与类的名称是相同的，只是在前面加 <code>~</code> 作为前缀，<strong>不会返回任何值</strong>，<strong>也不能带有参数</strong>。</p>
+</li>
+<li><p>析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。</p>
+</li>
+<li><p>析构函数<strong>不能直接调用</strong></p>
 </li>
 </ul>
 
