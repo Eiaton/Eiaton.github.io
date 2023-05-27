@@ -237,11 +237,11 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-27 02:50:02</time>
+          <time>2023-05-27 20:54:43</time>
           <span class="text-gray-400">·</span>
-          <span>1 min</span>
+          <span>3 min</span>
           <span class="text-gray-400">·</span>
-          <span>378 words</span>
+          <span>791 words</span>
         </section>
       </div>
     </div>
@@ -264,12 +264,12 @@
 </ul>
 <h3 id="形参：void"><a href="#形参：void" class="headerlink" title="形参：void"></a>形参：<code>void</code></h3><p><code>C</code>：</p>
 <ul>
-<li>func(); 没有声明形参表示函数的形参不确定</li>
-<li>没有参数，则必须显式声明 func(void);</li>
+<li>fn(); 没有声明形参表示函数的形参不确定</li>
+<li>没有参数，则必须显式声明 fn(void);</li>
 </ul>
 <p><code>C++</code>：</p>
 <ul>
-<li>func(); <strong>等价于</strong> func(void);</li>
+<li>fn(); <strong>等价于</strong> fn(void);</li>
 <li>使用 <code>…</code> 表示可变参数<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">printx</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* fmt, ...)</span></span>;</span><br><span class="line"><span class="comment">// 能以一个或多个实参调用：</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printx</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"><span class="built_in">printx</span>(<span class="string">&quot;a = %d b = %d&quot;</span>, a, b);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>背景：</p>
@@ -286,7 +286,43 @@
 <li>swap_double_double</li>
 </ul>
 <p>是不同的函数签名</p>
-<h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3>
+<h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3><p><code>C</code>：</p>
+<ul>
+<li><strong>不支持</strong>函数默认参数和值</li>
+</ul>
+<p><code>C++</code>：</p>
+<ul>
+<li>默认参数只能定义在参数<strong>右边</strong></li>
+<li>一个声明和实现可匹配多个函数<ul>
+<li><code>fn()</code> <code>fn(int)</code> <code>fun(int, float)</code> <code>fn(int, float, char)</code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">fn</span><span class="params">(<span class="type">int</span> n = <span class="number">1</span>, <span class="type">float</span> b = <span class="number">1.2</span>, <span class="type">char</span> c = <span class="string">&#x27;@&#x27;</span>)</span></span>; <span class="comment">//实现</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fn</span><span class="params">(<span class="type">int</span> n, <span class="type">float</span> b, <span class="type">char</span> c)</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; b &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; c &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">fn</span>();             <span class="comment">//func(1,1.2,&#x27;@&#x27;)</span></span><br><span class="line">    <span class="built_in">fn</span>(<span class="number">10</span>);           <span class="comment">//func(10,1.2,&#x27;@&#x27;)</span></span><br><span class="line">    <span class="built_in">fn</span>(<span class="number">20</span>, <span class="number">9.8</span>);      <span class="comment">//func(20,9.8,&#x27;@&#x27;)</span></span><br><span class="line">    <span class="built_in">fn</span>(<span class="number">30</span>, <span class="number">3.5</span>, <span class="string">&#x27;#&#x27;</span>); <span class="comment">//func(30,3.5,&#x27;#&#x27;)</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="字符串类型：string"><a href="#字符串类型：string" class="headerlink" title="字符串类型：string"></a>字符串类型：<code>string</code></h3><p><code>C</code>：</p>
+<ul>
+<li>C 字符串是 <code>char*</code> 类型，是以’\0’字符结束的字符数组。</li>
+<li>在 <code>C++</code> 中处理 <code>C</code> 字符串，使用 <code>#include &lt;cstring&gt;</code></li>
+</ul>
+<p><code>C++</code>：</p>
+<ul>
+<li><code>string</code> 是类</li>
+<li>作为区别，用 <code>cstring</code> 称 <code>C</code> 字符数组<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string s1;   <span class="comment">// 默认构造</span></span><br><span class="line">string s2 = <span class="string">&quot;c plus plus&quot;</span>; <span class="comment">// 用cstring构造</span></span><br><span class="line">string s3 = s2; <span class="comment">// 用同类对象构造</span></span><br><span class="line"><span class="function">string <span class="title">s4</span> <span class="params">(<span class="number">5</span>, <span class="string">&#x27;s&#x27;</span>)</span></span>; <span class="comment">// 用int,char作为参数构造</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><h3 id="公有成员"><a href="#公有成员" class="headerlink" title="公有成员"></a>公有成员</h3><ul>
+<li><p>公有成员在客户端可以任意访问。</p>
+</li>
+<li><p>公有数据成员不需要通过公有函数成员访问，其优点是使用方便，缺点是<em>可能会破坏封装的逻辑一致性</em>。</p>
+</li>
+</ul>
+<h3 id="私有成员"><a href="#私有成员" class="headerlink" title="私有成员"></a>私有成员</h3><ul>
+<li><p>私有成员变量或函数在类的外部是不可访问的，甚至是不可查看的。只有<em>类</em>和<em>友元函数</em>可以访问私有成员。</p>
+</li>
+<li><p>默认情况下，class的所有成员都是私有的。</p>
+</li>
+<li><p>实际操作中，我们一般会在私有区域定义数据，在公有区域定义相关的函数，以便在类的外部也可以调用这些函数</p>
+</li>
+</ul>
+
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
