@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Eiaton">
+    
+    <title>
+        
+            C++ note (11) |
+        
+        Sleep with me
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#FF6600","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"If you want, study with me, also","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Sleep with me
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                     
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/links">LINKS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">C++ note (11)</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Eiaton</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-06-19 19:43:37</span>
+        <span class="mobile">2023-06-19 19:43</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-26 23:25:14</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/C/">C++</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/C/Polymorphism/">Polymorphism</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="多态-Ⅰ"><a href="#多态-Ⅰ" class="headerlink" title="多态 Ⅰ"></a>多态 Ⅰ</h1><h2 id="虚函数及其意义"><a href="#虚函数及其意义" class="headerlink" title="虚函数及其意义"></a>虚函数及其意义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>虚函数是一个类的成员函数，前面有关键字 <code>virtual</code></p>
+<ul>
+<li>作用：在公有继承层次中的一个或多个派生类中对虚函数进行重定义。当派生类的对象使用它基类的指针（或引用）调用虚函数时，将调用该对象的成员函数。</li>
+</ul>
+<p>“一旦为虚，永远为虚”</p>
+<ul>
+<li>含义1：在公有继承层次中，某个类的成员函数申明为 virtual。则其直接或间接派生类中的相同签名的函数，都是虚函数。不论是否用关键字 virtual 再次申明。</li>
+<li>含义2：任何虚函数，都有可能被其派生类再次重新定义，重新定义后依然是虚函数。因此，虚函数既可以被继承，也可以被重新定义。</li>
+</ul>
+<h3 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h3><h3 id="Override-and-Overwrite"><a href="#Override-and-Overwrite" class="headerlink" title="Override and Overwrite"></a>Override and Overwrite</h3><p>覆盖（override）- 修改基类函数定义</p>
+<ul>
+<li>基类或非直接基类，至少有一个成员函数被 virtual 修饰</li>
+<li>派生类虚函数必须与基类虚函数有同样签名，即函数名，参数类型，顺序和数量都必须相同。</li>
+</ul>
+<p>隐藏（overwrite）- 屏蔽基类的函数定义</p>
+<ul>
+<li>派生类的函数与基类的函数同名，但是参数列表有所差异。</li>
+<li>派生类的函数与基类的函数同名，参数列表也相同，但是基类函数没有virtual关键字。</li>
+</ul>
+<p>对象指针（引用）被向上转型到基类指针（引用）</p>
+<ul>
+<li>覆盖：调用该对象的虚函数</li>
+<li>隐藏：调用基类的函数<br>派生类对象赋值到基类对象</li>
+<li>按基类行为调用该函数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">作用域</th>
+<th align="center">是否虚函数</th>
+<th align="center">函数名</th>
+<th align="center">函数签名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">重载</td>
+<td align="center">相同</td>
+<td align="center">-</td>
+<td align="center">相同</td>
+<td align="center">不同</td>
+</tr>
+<tr>
+<td align="center">隐藏/屏蔽</td>
+<td align="center">不同</td>
+<td align="center">否</td>
+<td align="center">相同</td>
+<td align="center">不同/相同</td>
+</tr>
+<tr>
+<td align="center">覆盖</td>
+<td align="center">不同</td>
+<td align="center">是</td>
+<td align="center">相同</td>
+<td align="center">相同</td>
+</tr>
+</tbody></table>
+<h2 id="多态的概念"><a href="#多态的概念" class="headerlink" title="多态的概念"></a>多态的概念</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>程序语言中，多态特指一个标识符指代不同类型的数据。或者说，由具体的数据类型决定该标识符的语义。</p>
+<h4 id="满足多态定义的标识符"><a href="#满足多态定义的标识符" class="headerlink" title="满足多态定义的标识符"></a>满足多态定义的标识符</h4><h2 id="函数重载（Function-Overload）-函数名，它可为不同类型函数（注：函数类型声明为-f-t1-t2…-）"><a href="#函数重载（Function-Overload）-函数名，它可为不同类型函数（注：函数类型声明为-f-t1-t2…-）" class="headerlink" title="函数重载（Function Overload）- 函数名，它可为不同类型函数（注：函数类型声明为 f(t1,t2…)）"></a>函数重载（Function Overload）<br>- 函数名，它可为不同类型函数（注：函数类型声明为 f(t1,t2…)）</h2><p>方法覆盖（Method Override）</p>
+<ul>
+<li>有虚函数基类的 指针或引用，它可指代派生类的对象</li>
+</ul>
+<h2 id="泛型（Generics）-x2F-模板（Template），即“参数化类型”-模板名，例如-vector-可泛化指代各种类型数据的数组"><a href="#泛型（Generics）-x2F-模板（Template），即“参数化类型”-模板名，例如-vector-可泛化指代各种类型数据的数组" class="headerlink" title="泛型（Generics）/模板（Template），即“参数化类型”- 模板名，例如 vector 可泛化指代各种类型数据的数组"></a>泛型（Generics）/模板（Template），即“参数化类型”<br>- 模板名，例如 vector 可泛化指代各种类型数据的数组</h2><p>多态标识符必须指派具体的函数或方法以实现规定的语义。</p>
+<p>静态绑定：如果在运行前由编译完成这个指派，称为静态绑定</p>
+<p>动态绑定：如果在运行期间完成这个指派，称为动态绑定</p>
+<h2 id="多态-函数重载"><a href="#多态-函数重载" class="headerlink" title="多态-函数重载"></a>多态-函数重载</h2><h2 id="多态-动态模型"><a href="#多态-动态模型" class="headerlink" title="多态-动态模型"></a>多态-动态模型</h2><h3 id="静态类型与动态类型"><a href="#静态类型与动态类型" class="headerlink" title="静态类型与动态类型"></a>静态类型与动态类型</h3><p>静态类型</p>
+<ul>
+<li>对程序进行编译时分析所得到的表达式的类型被称为表达式的静态类型。程序执行时静态类型不会更改。</li>
+</ul>
+<p>动态类型</p>
+<ul>
+<li>若某个泛左值表达式指代某个多态对象，则其最终派生对象的类型被称为其动态类型。<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span> {<span class="keyword">virtual</span> ~<span class="built_in">B</span>(){}}; </span><br><span class="line"><span class="comment">// 多态类型，至少包含一个虚函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">D</span>:B{} <span class="comment">// 多态类型</span></span><br><span class="line">D d; <span class="comment">// 最终派生对象</span></span><br><span class="line">B* ptr = &amp;d;</span><br><span class="line"><span class="comment">// (*ptr)的静态类型为B</span></span><br><span class="line"><span class="comment">// (*ptr)的动态类型为D</span></span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>cppreference: type class</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="静态类型——静态绑定"><a href="#静态类型——静态绑定" class="headerlink" title="静态类型——静态绑定"></a>静态类型——静态绑定</h3><p>重写一个相同函数名、相同参数的函数，会覆盖或隐藏之前继承而来的函数。</p>
+<p>基类指针指向派生类对象，这对于实现多态性的行为是至关重要的。</p>
+<h3 id="动态类型——动态绑定"><a href="#动态类型——动态绑定" class="headerlink" title="动态类型——动态绑定"></a>动态类型——动态绑定</h3><p>仅需要在基类的成员函数前面加上virtual关键字，就能把一个函数声明为虚函数。该类及其子类都是多态类型。</p>
+<p>当多态类型指针（或引用）调用虚函数时，则产生多态现象，即调用指针所指向的对象的成员函数</p>
+<blockquote>
+<p>在面向对象编程中，多态与继承层次结构相关，使开发人员可以“用通用的方法编程”而不是局限于“用特殊的方法编程”。</p>
+<p>在现实中会经常用到多态，比如“移动move”这一行为在大象和猴子中有不同表现形式，“发薪水”这一行为在教授、副教授、讲师之中可能有不同的计算方式，“绘制draw”这一行为对于三角形、正方形也是不同的。</p>
+<p>特别是我们设计程序库时，根本不可能知道用户行为的具体实现方式。多态为适应这种变化和扩展提供了便利</p>
+</blockquote>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/C/">#C++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/06/19/C-note-12/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">C++ note (12)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/06/10/C-note-10/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">C++ note (10)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E6%80%81-%E2%85%A0"><span class="nav-number">1.</span> <span class="nav-text">多态 Ⅰ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E6%84%8F%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">虚函数及其意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E4%B9%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Override-and-Overwrite"><span class="nav-number">1.1.3.</span> <span class="nav-text">Override and Overwrite</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">多态的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BB%A1%E8%B6%B3%E5%A4%9A%E6%80%81%E5%AE%9A%E4%B9%89%E7%9A%84%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">满足多态定义的标识符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%EF%BC%88Function-Overload%EF%BC%89-%E5%87%BD%E6%95%B0%E5%90%8D%EF%BC%8C%E5%AE%83%E5%8F%AF%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E5%87%BD%E6%95%B0%EF%BC%88%E6%B3%A8%EF%BC%9A%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E4%B8%BA-f-t1-t2%E2%80%A6-%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">函数重载（Function Overload）- 函数名，它可为不同类型函数（注：函数类型声明为 f(t1,t2…)）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%EF%BC%88Generics%EF%BC%89-x2F-%E6%A8%A1%E6%9D%BF%EF%BC%88Template%EF%BC%89%EF%BC%8C%E5%8D%B3%E2%80%9C%E5%8F%82%E6%95%B0%E5%8C%96%E7%B1%BB%E5%9E%8B%E2%80%9D-%E6%A8%A1%E6%9D%BF%E5%90%8D%EF%BC%8C%E4%BE%8B%E5%A6%82-vector-%E5%8F%AF%E6%B3%9B%E5%8C%96%E6%8C%87%E4%BB%A3%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.</span> <span class="nav-text">泛型（Generics）&#x2F;模板（Template），即“参数化类型”- 模板名，例如 vector 可泛化指代各种类型数据的数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">1.5.</span> <span class="nav-text">多态-函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81-%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">多态-动态模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8A%A8%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.1.</span> <span class="nav-text">静态类型与动态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A"><span class="nav-number">1.6.2.</span> <span class="nav-text">静态类型——静态绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A"><span class="nav-number">1.6.3.</span> <span class="nav-text">动态类型——动态绑定</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Eiaton</a>
+            
+        </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>

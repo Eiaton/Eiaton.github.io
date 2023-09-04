@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Eiaton">
+    
+    <title>
+        
+            C++ note (13) |
+        
+        Sleep with me
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#FF6600","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"If you want, study with me, also","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Sleep with me
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                     
+                        <li class="menu-item">
+                            <a class=""
+                                href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                     
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/links">LINKS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">C++ note (13)</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Eiaton</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-06-19 20:20:34</span>
+        <span class="mobile">2023-06-19 20:20</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-08-03 00:44:18</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/C/">C++</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/C/Template/">Template</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><h2 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h2><p>泛型编程（generic programming）</p>
+<ul>
+<li>独立于任何特定数据类型的编程，这使得<span style="color:orange">不同类型的数据(对象)可以被相同的代码操作</span></li>
+</ul>
+<p>在 C++ 中，使用<strong>模板（template）</strong>来进行泛型编程，包括</p>
+<ul>
+<li>函数模板（Function template）</li>
+<li>类模板（Class template）</li>
+</ul>
+<p>当从通用代码创建实例代码时，具体数据类型才被确定</p>
+<p>泛型编程是一种编译时多态性（静态多态）。其中，数据类型本身是参数化的，因而程序具有多态性特征</p>
+<h2 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h2><p>实例化（Instantiation）：由编译器将通用模板代码转换为不同的实例代码的过程称为<em>实例化</em></p>
+<h2 id="函数模板-Function-template"><a href="#函数模板-Function-template" class="headerlink" title="函数模板(Function template)"></a>函数模板(Function template)</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>用相同的处理过程，处理不同类型的数据</p>
+<ul>
+<li>减少代码</li>
+<li>甚至能处理编程时<span style="color:orange">未知的数据类型</span><blockquote>
+<p>已知函数，类，未知处理的数据类型，模板</p>
+<p>已知基类的虚函数，未知派生类的具体实现，覆盖（多态）</p>
+<p>已知函数功能，未知具体参数类型与组合，重载</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; v1, <span class="type">int</span>&amp; v2)</span> </span>{</span><br><span class="line">  <span class="type">int</span> tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">double</span>&amp; v1, <span class="type">double</span>&amp; v2)</span> </span>{</span><br><span class="line">  <span class="type">double</span> tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(string&amp; v1, string&amp; v2)</span> </span>{</span><br><span class="line">  string tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>此三个函数除了所处理对象的类型不同之外，代码几乎完全相同。即，三个函数功能类似。以下函数模板可以涵盖以上三函数的作用：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(T&amp; v1, T&amp; v2)</span> </span>{</span><br><span class="line">  T tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>注意：程序有些 bug。当 T 存在默认构造函数时，编译错误。</p>
+<p>正确的写法： T tmp = v1； 即使用 copy 构造，来避免使用默认初始化</p>
+</blockquote>
+<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p>`template&lt;模板形参表&gt; 返回值类型 函数名 (形参列表) {<br>  函数体<br>}</p>
+<ol>
+<li>模板形参表<span style="color:orange">不能为空</span></li>
+<li>形参列表必须包含模板形参表中出现的<span style="color:orange">所有</span>形参</li>
+</ol>
+<p>模板形参表的形式：</p>
+<ul>
+<li><span style="color:orange">typename</span> 模板形参1, <span style="color:orange">typename</span> 模板形参2, …</li>
+</ul>
+<h3 id="实例化-instantiation"><a href="#实例化-instantiation" class="headerlink" title="实例化(instantiation)"></a>实例化(instantiation)</h3><p>函数模板的使用形式与普通函数调用相同。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="function">std::string <span class="title">s1</span><span class="params">(<span class="string">"rabbit"</span>)</span>, <span class="title">s2</span><span class="params">(<span class="string">"bear"</span>)</span></span>;</span><br><span class="line">  <span class="type">int</span> iv1 = <span class="number">3</span>, iv2 = <span class="number">5</span>;</span><br><span class="line">  <span class="type">double</span> dv1 = <span class="number">2.8</span>, dv2 = <span class="number">8.5</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用函数模板的实例swap(string&amp;, string&amp;)</span></span><br><span class="line">  <span class="built_in">swap</span>(s1, s2);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用函数模板的实例swap(int&amp;, int&amp;)</span></span><br><span class="line">  <span class="built_in">swap</span>(iv1, iv2);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用swap的实例swap(double&amp;, double&amp;)</span></span><br><span class="line">  <span class="built_in">swap</span>(dv1, dv2);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>调用函数模板的过程：</p>
+<ol>
+<li>模板实参推断（template argument deduction）：编译器根据函数调用中所给出的<strong>实参的类型</strong>，确定相应的<strong>模板实参</strong></li>
+<li>函数模板的实例化（instantiation）：模板实参确定之后，编译器就使用<strong>模板实参代替相应的模板形参</strong>，产生并编译函数模板的一个特定版本（称为函数模板的一个<em>实例</em>（instance））（注意：此过程中<span style="color:orange">不进行常规隐式类型转换</span>）</li>
+</ol>
+<h3 id="显示（全）模板特化"><a href="#显示（全）模板特化" class="headerlink" title="显示（全）模板特化"></a>显示（全）模板特化</h3><ul>
+<li>在模板当中有些特殊的类型，当想要针对特殊的类型进行一些特殊的操作，这时候就可以用模板的<span style="color:orange">特化</span></li>
+<li>在正常的模板下面接着编写代码，写一个空的template&lt;&gt;然后写个具体的函数代码来补充</li>
+<li>如实例所示，当传入的实参类型是int类型，就执行模板的<span style="color:orange">特化部分</span>，而非int类型执行正常的<span style="color:orange">模板推断</span><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(T&amp; v1, T&amp; v2)</span> </span>{</span><br><span class="line">  T tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;&gt; <span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; v1, <span class="type">int</span>&amp; v2)</span> </span>{</span><br><span class="line">  <span class="type">int</span> tmp;</span><br><span class="line">  tmp = v1;</span><br><span class="line">  v1  = v2;</span><br><span class="line">  v2  = tmp;</span><br><span class="line">  v1 += <span class="number">10</span>;</span><br><span class="line">  v2 += <span class="number">10</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="模板重载"><a href="#模板重载" class="headerlink" title="模板重载"></a>模板重载</h3><p>对函数模板进行重载：</p>
+<ul>
+<li>定义名字相同而函数形参表不同的函数模板</li>
+<li>或者定义与函数模板同名的非模板函数(正常函数)，在其函数体中完成不同的行为</li>
+</ul>
+<p>编译器是如何确定调用的是这么多同名函数中的哪一个呢？</p>
+<h3 id="如何确定调用哪个函数"><a href="#如何确定调用哪个函数" class="headerlink" title="如何确定调用哪个函数"></a>如何确定调用哪个函数</h3><p>函数调用的静态绑定规则（重载协议）：</p>
+<ol>
+<li>如果某一同名非模板函数(指正常的函数)的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数。否则，进入第2步</li>
+<li>如果能从同名的函数模板实例化一个函数实例，而该函数实例的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数模板的实例函数。否则，进入第3步<br>在步骤2中：首先匹配函数模板的特化，在匹配非指定特殊的函数模板</li>
+<li>对函数调用的实参进行隐式类型转换后与非模板函数再次进行匹配，若能找到匹配的函数则调用该函数。否则，进入第4步</li>
+<li>提示编译错误<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数模板demoPrint</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">demoPrint</span><span class="params">(<span class="type">const</span> T v1, <span class="type">const</span> T v2)</span></span>{</span><br><span class="line">  cout &lt;&lt; <span class="string">"the first version of demoPrint()"</span> &lt;&lt; endl;</span><br><span class="line">  cout &lt;&lt; <span class="string">"the arguments: "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" "</span> &lt;&lt; v2 &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 函数模板demoPrint的指定特殊</span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">demoPrint</span><span class="params">(<span class="type">const</span> <span class="type">char</span> v1, <span class="type">const</span> <span class="type">char</span> v2)</span></span>{</span><br><span class="line">  cout &lt;&lt; <span class="string">"the specify special of demoPrint()"</span> &lt;&lt; endl;</span><br><span class="line">  cout &lt;&lt; <span class="string">"the arguments: "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" "</span> &lt;&lt; v2 &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 函数模板demoPrint重载的函数模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">demoPrint</span><span class="params">(<span class="type">const</span> T v)</span></span>{</span><br><span class="line">  cout &lt;&lt; <span class="string">"the second version of demoPrint()"</span> &lt;&lt; endl;</span><br><span class="line">  cout &lt;&lt; <span class="string">"the argument: "</span> &lt;&lt; v &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 非函数模板demoPrint</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">demoPrint</span><span class="params">(<span class="type">const</span> <span class="type">double</span> v1, <span class="type">const</span> <span class="type">double</span> v2)</span></span>{</span><br><span class="line">  cout &lt;&lt; <span class="string">"the nonfunctional template version of demoPrint()"</span> &lt;&lt; endl;</span><br><span class="line">  cout &lt;&lt; <span class="string">"the arguments: "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" "</span> &lt;&lt; v2 &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 函数调用 */</span></span><br><span class="line"><span class="function">string <span class="title">s1</span><span class="params">(<span class="string">"rabbit"</span>)</span>, <span class="title">s2</span><span class="params">(<span class="string">"bear"</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">c1</span><span class="params">(<span class="string">'k'</span>)</span>, <span class="title">c2</span><span class="params">(<span class="string">'b'</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> iv1 = <span class="number">3</span>, iv2 = <span class="number">5</span>;</span><br><span class="line"><span class="type">double</span> dv1 = <span class="number">2.8</span>, dv2 = <span class="number">8.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用第一个函数模板</span></span><br><span class="line"><span class="built_in">demoPrint</span>(iv1, iv2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用第一个函数模板的指定特殊</span></span><br><span class="line"><span class="built_in">demoPrint</span>(c1, c2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用第二个函数模板</span></span><br><span class="line"><span class="built_in">demoPrint</span>(iv1);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用非函数模板</span></span><br><span class="line"><span class="built_in">demoPrint</span>(dv1, dv2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 隐式转换后调用非函数模板</span></span><br><span class="line"><span class="built_in">demoPrint</span>(iv1, dv2);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/* 结果 */</span><br><span class="line">the first version of demoPrint()</span><br><span class="line">the arguments: 3 5</span><br><span class="line">the specify special of demoPrint()</span><br><span class="line">the arguments: k b</span><br><span class="line">the second version of demoPrint()</span><br><span class="line">the argument: 3</span><br><span class="line">the nonfunctional template version of demoPrint()</span><br><span class="line">the arguments: 2.8 8.5</span><br><span class="line">the nonfunctional template version of demoPrint()</span><br><span class="line">the arguments: 3 8.5</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="类模板"><a href="#类模板" class="headerlink" title="类模板"></a>类模板</h2><p><strong>使用情景</strong>：<span style="color:orange">定义可以存放任意类型对象的通用容器类</span></p>
+<ul>
+<li>定义一个栈（stack）类，即可用于存放int型对象，又可用于存放float、double、string…甚至任意未知类型的元素</li>
+<li>定义一个队列（queue）类，即可用于存放int型对象，又可用于存放float、double、string…甚至任意未知类型的元素</li>
+</ul>
+<p><strong>实现方式</strong>：为类声明一种<strong>模板</strong>，使得类中的某些数据成员、某些成员函数的参数、某些成员函数的返回值，能取任意类型（包括基本类型和用户自定义类型）</p>
+<h3 id="定义方式"><a href="#定义方式" class="headerlink" title="定义方式"></a>定义方式</h3><p>类模板的一般形式：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;模板形参表&gt;</span><br><span class="line"><span class="keyword">class</span> 类模板名 {</span><br><span class="line">  类成员声明</span><br><span class="line">  ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>在类模板外定义成员函数的一般形式：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;模板形参表&gt;</span><br><span class="line">返回值类型 类模板名&lt;模板形参名列表&gt;::函数名(函数形参表) {</span><br><span class="line">  函数实现</span><br><span class="line">  ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>其中模板形参表的形式为：template &lt;typename 类型参数1, typename 类型参数2, …&gt;</p>
+<p>（注：模板形参每项是非类型形参、类型形参、模板形参之一。）</p>
+</blockquote>
+<h3 id="示例：链表实现的栈类模板"><a href="#示例：链表实现的栈类模板" class="headerlink" title="示例：链表实现的栈类模板"></a>示例：链表实现的栈类模板</h3><h2 id="非类型模板形参"><a href="#非类型模板形参" class="headerlink" title="非类型模板形参"></a>非类型模板形参</h2><h2 id="数组的引用"><a href="#数组的引用" class="headerlink" title="数组的引用"></a>数组的引用</h2>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/C/">#C++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/06/20/Use-Mermaid-in-Hexo/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Use Mermaid in Hexo</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/06/19/C-note-12/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">C++ note (12)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">泛型编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF-Function-template"><span class="nav-number">1.3.</span> <span class="nav-text">函数模板(Function template)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">一般形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96-instantiation"><span class="nav-number">1.3.4.</span> <span class="nav-text">实例化(instantiation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%EF%BC%88%E5%85%A8%EF%BC%89%E6%A8%A1%E6%9D%BF%E7%89%B9%E5%8C%96"><span class="nav-number">1.3.5.</span> <span class="nav-text">显示（全）模板特化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E9%87%8D%E8%BD%BD"><span class="nav-number">1.3.6.</span> <span class="nav-text">模板重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E8%B0%83%E7%94%A8%E5%93%AA%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.7.</span> <span class="nav-text">如何确定调用哪个函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.4.</span> <span class="nav-text">类模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%A0%88%E7%B1%BB%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.4.2.</span> <span class="nav-text">示例：链表实现的栈类模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF%E5%BD%A2%E5%8F%82"><span class="nav-number">1.5.</span> <span class="nav-text">非类型模板形参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%BC%95%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">数组的引用</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Eiaton</a>
+            
+        </div>
+        
+            <script async 
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
